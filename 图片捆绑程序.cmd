@@ -1,0 +1,67 @@
+ÿþa
+cls
+@echo off & setlocal enabledelayedexpansion & color 0a
+title Í¼Æ¬À¦°ó³ÌÐòByÍüÈ´µÄÐýÂÉ
+rem È·¶¨Ñ¹ËõÎÄ¼þºó×º
+:suffix
+choice /c zr /n /m "ÇëÊäÈëÑ¹ËõÎÄ¼þµÄºó×º(z[zip] or r[rar]):"
+if /i "%errorlevel%" equ "1" set d=zip & goto photosuffix
+if /i "%errorlevel%" equ "2" set d=rar & goto photosuffix
+cls 
+ping /n 2 127>nul & cls
+goto suffix
+
+
+rem È·¶¨Í¼Æ¬ºó×º
+:photosuffix
+choice /c jp /n /m "ÇëÊäÈëÑ¹ËõÎÄ¼þµÄºó×º(j[jpg] or p[png]):"
+if /i "%errorlevel%" equ "1" set f=jpg & goto repare
+if /i "%errorlevel%" equ "2" set f=png & goto repare
+cls 
+ping /n 2 127>nul & cls
+goto photosuffix
+
+
+:repare
+::Í¼Æ¬Ñ°ÕÒ
+dir /b|findstr /i "%f%">Í¼Æ¬Ãû×Ö.txt
+for /f "delims=" %%i in (Í¼Æ¬Ãû×Ö.txt) do (
+  set a=%%i
+  )
+::Ñ¹ËõÎÄ¼þÑ°ÕÒ
+dir /b|findstr /i "%d%">Ñ¹ËõÃû×Ö.txt
+for /f "delims=" %%i in (Ñ¹ËõÃû×Ö.txt) do (
+  set b=%%i
+  )
+ cls
+ echo ÒÑ°ïÄú×Ô¶¯ËÑÑ°µ½½á¹û 
+ echo Í¼Æ¬Ñ°ÕÒ½á¹û:%a%
+ echo Ñ¹ËõÎÄ¼þÑ°ÕÒ½á¹û:%b%
+del Í¼Æ¬Ãû×Ö.txt & del Ñ¹ËõÃû×Ö.txt
+rem ¼ì²â×Ô¶¯ËÑË÷
+set arepair=%a:~-3%
+set brepair=%b:~-3%
+if /i %arepair% neq %f% goto input
+if /i %brepair% neq %d% goto input
+goto run
+
+:input
+cls
+echo                              ×Ô¶¯¼ìË÷Ê§°ÜÇëÊÖ¶¯ÊäÈë
+ping/n 2 127>nul & cls
+echo ÊÖ¶¯ÊäÈëÑ¹ËõÎÄ¼þÓëÍ¼Æ¬Ãû³Æ:
+set /p b=Ñ¹ËõÎÄ¼þ£º
+set /p a=Í¼Æ¬£º
+goto run
+
+:run
+echo Çë°´ÈÎÒâ¼üÈ·ÈÏÑ¹Ëõ
+pause>nul
+cls
+set /p c=ÇëÊäÈëÖÆµÃÍ¼Æ¬Ãû×Ö(²»´øºó×º):
+copy /b %a%+%b% %c%.jpg>nul
+for /l %%i in (5,-1,0) do (
+  echo ÖÆ×÷Íê³É£¬½«ÔÚ %%i ÄÚ×Ô¶¯ÍË³ö
+  ping -n 2 127.0.0.1>nul
+  cls
+  )

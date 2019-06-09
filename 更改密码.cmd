@@ -1,0 +1,48 @@
+ÿşa
+cls
+@echo off & setlocal enabledelayedexpansion & title ¸ü¸ÄÃÜÂë
+color 0a & set default=admin 
+set times=3
+if exist key.txt goto run 
+echo admin>key.txt
+goto run
+
+:run
+for /f "delims=+" %%i in (key.txt) do (
+set default=%%i
+)
+set /p password=ÇëÊäÈëÃÜÂë½øĞĞĞ£Ñé:
+if "%password%"=="%default%" goto current
+echo Your password is wrong!This windows will be closed!
+for /l %%i in (5,-1,0) do (
+echo Ê£Óà %%i Ãë×Ô¶¯ÍË³ö£¡
+ping /n 2 127>nul
+cls
+)
+exit
+
+:current
+echo ÃÜÂëÕıÈ·
+cls
+echo ½øÈëÖ÷½çÃæ
+echo ¸ü¸ÄÃÜÂë
+set /p repeat=ÊäÈëÃÜÂë:
+if "%repeat%"=="%default%" goto change
+goto wrong
+
+:change
+cls
+set /p newpassword=ÊäÈëĞÂÃÜÂë:
+echo %newpassword%>key.txt
+pause
+exit
+
+:wrong
+cls
+echo ÃÜÂë´íÎó£¡ & set /a times=%times%-1
+if %times%==0 exit
+echo %times% chances
+set /p repeat=ÊäÈëÃÜÂë:
+if "%repeat%"=="%default%" goto change
+goto :wrong
+

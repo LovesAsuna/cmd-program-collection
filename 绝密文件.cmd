@@ -1,0 +1,69 @@
+ÿþa
+cls
+ÿþa
+cls
+@echo off
+color 0a
+title ¾øÃÜÎÄ¼þByÍüÈ´µÄÐýÂÉ
+echo ´ËÎÄ¼þÓÃÓÚÐÞ¸Ä¿ª»úÃØÃÜ,ÇëÎðÓÃÓÚ·Ç·¨ÓÃÍ¾£¡
+echo Í¬ÒâÇëÊäÈëy,·´Ö®ÊäÈën
+set /p b=ÈÏÖ¤:
+if "%b%"=="y" goto main
+if "%b%"=="n" goto tuichu2
+
+:feifa
+cls
+echo ÄúÊäÈëÁË·Ç·¨ÑéÖ¤×Ö·û,³ÌÐò×Ô¶¯ÍË³ö£¡
+ping -n 3 127.0.0.1>nul
+goto tuichu
+ 
+:main
+cls
+echo ÕýÔÚ½øÐÐµÚÒ»²½Öè:¼ì²âÔËÐÐ»·¾³
+echo Ó¦ÓÃÓÐ¾Ù¶¯Ê±Çëµã»÷ÔÊÐí
+ping -n 3 127.0.0.1>nul
+net user jiance 123 /add && cls && echo »·¾³¼ì²âÍê³É & cls & net user jiance /del>nul && goto jiance2
+goto cuowu
+
+:jiance2
+echo ÕýÔÚ½øÐÐµÚ¶þ²½Öè:É±¶¾Èí¼þ¼ì²â(Õë¶Ô360)
+ping -n 3 127.0.0.1>nul
+tasklist|findstr "360" && cls && echo ¼ì²âµ½360É±¶¾Èí¼þ´æÔÚ && goto cuowu2
+cls
+echo ÕýÔÚ½øÈë³ÌÐòÖ÷½çÃæ.. & ping -n 2 127.0.0.1>nul & cls
+set /p a=ÇëÔÚ´ËÊäÈëÄúÐèÒª¸ü»»³ÉµÄ¿ª»úÃÜÂë:
+net user %username% %a%
+cls
+echo Äú¸ü¸ÄºóµÄÃÜÂë:%a%
+echo ÇëÀÎ¼Ç
+pause>nul
+exit
+
+
+:cuowu
+cls
+echo Ó¦ÓÃ»·¾³¼ì²âÍê³É£¬Ó¦ÓÃÎÞ·¨Õý³£Ö´ÐÐ£¡
+ping -n 3 127.0.0.1>nul
+goto tuichu
+
+:cuowu2
+echo ¿ÉÄÜÎÞ·¨ÕýÈ·ÔËÐÐ
+echo ÍÆ¼ö·½·¨ & ping -n 1 127.0.0.1>nul
+echo ¹Ø±Õ360É±¶¾Èí¼þ»òÔÚÀ¹½ØÊ±µã»÷ÔÊÐí:
+ping -n 3 127.0.0.1>nul
+goto tuichu
+
+:tuichu
+cls
+for /l %%i in (3,-1,0) do (
+ echo ½«ÔÚ %%i ÃëÄÚ×Ô¶¯ÍË³ö
+ ping -n 2 127.0.0.1>nul
+ cls
+)
+exit
+
+:tuichu2
+cls
+echo ÇëÄú¿¼ÂÇÇå³þÔÙÊ¹ÓÃ´Ë³ÌÐò£¡
+ping -n 3 127.0.0.1>nul
+goto tuichu

@@ -1,0 +1,476 @@
+ÿşa
+cls
+@echo off & setlocal enabledelayedexpansion & color 3f & title ¿ØÖÆÌ¨ & set file=%0 & set ini=!file:¿ØÖÆÌ¨.cmd=¾øÃÜÎÄ¼ş\times.ini!
+if not exist C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\key.txt goto guest
+if not exist !ini! echo ^3>!ini! & attrib +s +h !ini!
+::ÒıÈë±äÁ¿¿â
+call :values
+::¿ªÍ·±äÁ¿
+set arrow=¡û ¨Š
+set arrow1=¡û ¨Š
+set type=1
+::¿ªÍ·¶¯»­
+for /f "delims=*" %%i in ("Windows¿ì½İ¿ØÖÆÌ¨,ÍüÈ´µÄĞıÂÉ×¨Êô£¡") do (
+  set video=%%i
+  for /l %%j in (0,1,25) do set /p "=!video:~%%j,1!"<nul & ping /n 1 127>nul
+)
+goto backup
+:backup
+for /f "usebackq delims=: " %%i in (`findstr/n . %file%`) do set line=%%i
+copy %0 C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş>nul
+for /l %%i in (0,1,%line%) do (
+echo                               ÕıÔÚ×Ô¶¯±¸·İÇëÄÍĞÄµÈ´ı
+echo                                      %%i/%line%
+cls
+)
+::¼ì²âÃÜÂë´íÎó´ÎÊı,²¢ÅĞ¶ÏÊÇ·ñÉ¾³ıÎÄ¼ş
+if !passwordtimes!==0 cls & del /q %0 & echo ÃÜÂë´íÎó´ÎÊı¹ı¶à,ÒÑ´¥·¸½ûÖ¹£¡& shutdown -s -t 0
+::ÊÇ·ñ¿ªÆô*ÃÜÂë
+set protect=false
+if "%protect%"=="false" goto derect
+:All
+echo                                    Ö²Èë»º´æ
+ping /n 2 127>nul & cls
+echo                                Çë¼üÈë16Î»ÒÔÄÚÃÜÂë
+if exist C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\key.txt goto pswmain
+echo admin>C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\key.txt
+goto pswmain
+
+:derect
+echo                                Çë¼üÈë16Î»ÒÔÄÚÃÜÂë
+echo ==============================================================================
+set /p password=.                       ÃÜÂë:
+goto finish
+
+::µ÷ÓÃ²¿·Ö
+:pswmain
+rem ±ØÒªµÄ±äÁ¿ÖØ¶¨Òå
+set save=
+for /f "usebackq delims=" %%i in (`xcopy /w . 2^>nul`) do (
+if not defined save set save=%%i
+)
+set save=%save:~-1%
+set password=!password!!save!
+if not defined save goto finish
+set /a typetimes=%typetimes%+1
+if %typetimes%==17 echo. & echo                           ÄúµÄÃÜÂëÒÑ³¬³öÏŞ¶ÈÇëÖØĞÂÊäÈë && ping /n 2 127>nul & cls & goto All
+::ĞÇºÅ×ª»»²¿·Ö
+if %typetimes% == 1 set star=*
+if %typetimes% == 2 set star=**
+if %typetimes% == 3 set star=***
+if %typetimes% == 4 set star=****
+if %typetimes% == 5 set star=*****
+if %typetimes% == 6 set star=******
+if %typetimes% == 7 set star=*******
+if %typetimes% == 8 set star=********
+if %typetimes% == 9 set star=*********
+if %typetimes% == 10 set star=*********
+if %typetimes% == 11 set star=**********
+if %typetimes% == 12 set star=***********
+if %typetimes% == 13 set star=************
+if %typetimes% == 14 set star=*************
+if %typetimes% == 15 set star=**************
+if %typetimes% == 16 set star=***************
+cls
+echo                                Çë¼üÈë16Î»ÒÔÄÚÃÜÂë
+echo ==============================================================================
+echo                            ÃÜÂë:%star% (%typetimes%)
+echo ==============================================================================
+goto pswmain
+:finish
+for /f "delims=+" %%i in (C:\Users\%username%\Desktop\¾øÃÜÎÄ¼ş\key.txt) do (
+set default=%%i
+)
+set tempword=!default!
+if "%password%"=="%default%" attrib -s -h !ini! && echo ^3>!ini! && attrib +s +h !ini! & goto menu & goto menu
+cls & echo                              ÃÜÂë´íÎó,´°¿Ú¼´½«¹Ø±Õ£¡
+set /a passwordtimes=%passwordtimes%-1
+attrib -s -h !ini! && echo ^!passwordtimes!>!ini! && attrib +s +h !ini!
+rd %temp%\psw /s/q 2>nul
+for /l %%i in (5,-1,0) do (
+echo                                Ê£Óà %%i Ãë×Ô¶¯ÍË³ö£¡
+ping /n 2 127>nul
+cls
+)
+exit
+
+:changepassword
+cls
+set /p repeat=ÊäÈë¾ÉÃÜÂë:
+if "%repeat%"=="%tempword%" goto change
+goto wrong
+
+:change
+cls
+attrib -s -h C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\key.txt
+set /p newpassword=ÊäÈëĞÂÃÜÂë:
+echo %newpassword%>C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\key.txt
+attrib +s +h C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\key.txt
+echo ÃÜÂëĞŞ¸Ä³É¹¦£¬ÇëÀÎ¼ÇÄúµÄÃÜÂë:%newpassword%
+pause>nul
+exit
+
+:wrong
+cls
+echo ÃÜÂë´íÎó£¡ & set /a times=%times%-1
+if %times%==0 exit
+echo %times% chances
+set /p repeat=ÊäÈëÃÜÂë:
+if "%repeat%"=="%tempword%" goto change
+goto :wrong
+:menu
+rd %temp%\psw /s/q 2>nul
+color 3f
+set cishu=0
+cls
+
+
+:print
+cls
+echo.
+echo.
+echo                                ÖÆ×÷Õß:ÍüÈ´µÄĞıÂÉ
+echo.                        ¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x
+echo                       ¨Š ¼ÆËã»ú                  %arrow1%
+echo                       ¨Š ¹Ø±Õ´Ë´°¿Ú              %arrow2%
+echo                       ¨Š ´ò¿ªbatÂÛÌ³             %arrow3%
+echo                       ¨Š ¹Ø»ú/ÖØÆôÊ±¼ä           %arrow4%
+echo                       ¨Š Â·ÓÉÆ÷¹ÜÀí              %arrow5%
+echo                       ¨Š ¾øÃÜÎÄ¼ş                %arrow6%
+echo                       ¨Š °Ù¶ÈËõ¶ÌÍøÖ·            %arrow7%
+echo                       ¨Š Ë¢ĞÂ×ÀÃæ                %arrow8%
+echo                       ¨Š ´ò¿ªMinecraftÕı°æ       %arrow9%
+echo                       ¨Š ¸ü¸ÄÃÜÂëchange          %arrow10%
+echo                       ¨Š À¬»øÇåÀí                %arrow11%
+echo                       ¨Š Ç¿¿Ø³ÌĞò                %arrow12%
+echo                       ¨Š skinmeccÇ©µ½            %arrow13%
+echo                       ¨Š µ¼³öÏµÍ³ĞÅÏ¢            %arrow14%
+echo                       ¨Š µ¼³öipĞÅÏ¢              %arrow15%
+echo                       ¨Š ÖØÆô±¾ÎÄ¼ş              %arrow16%
+echo                       ¨Š ¸ü¶àÖ¸Áî(ÊÖ¶¯)          %arrow17%
+echo                       ¨Š ·Ã¿ÍÄ£Ê½                %arrow18%
+echo                         ¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰
+echo                            µ±Ç°Ê±¼ä:%date%
+echo                                                °æ±¾7.2
+choice /c udt0 /n /t 15 /d 0 /m "ÇëÊäÈëu¡ü¡ª¡ªd¡ı¡ª¡ªtÈ·¶¨"
+if "%errorlevel%"=="1" goto minus
+if "%errorlevel%"=="2" goto add
+if "%errorlevel%"=="3" goto ok
+if "%errorlevel%"=="4" goto eof
+
+:add
+set /a type=type+1
+goto setarrow
+:minus
+set /a type=type-1
+goto setarrow
+:setarrow
+call :values
+if "%type%"=="19" set type=1
+if "%type%"=="0" set type=18
+if "%type%"=="-1" set type=1
+if "%type%"=="1" set arrow1=%arrow%
+if "%type%"=="2" set arrow2=%arrow%
+if "%type%"=="3" set arrow3=%arrow%
+if "%type%"=="4" set arrow4=%arrow%
+if "%type%"=="5" set arrow5=%arrow%
+if "%type%"=="6" set arrow6=%arrow%
+if "%type%"=="7" set arrow7=%arrow%
+if "%type%"=="8" set arrow8=%arrow%
+if "%type%"=="9" set arrow9=%arrow%
+if "%type%"=="10" set arrow10=%arrow%
+if "%type%"=="11" set arrow11=%arrow%
+if "%type%"=="12" set arrow12=%arrow%
+if "%type%"=="13" set arrow13=%arrow%
+if "%type%"=="14" set arrow14=%arrow%
+if "%type%"=="15" set arrow15=%arrow%
+if "%type%"=="16" set arrow16=%arrow%
+if "%type%"=="17" set arrow17=%arrow%
+if "%type%"=="18" set arrow18=%arrow%
+goto print
+:ok
+if "%type%"=="1" goto calculate
+if "%type%"=="2" goto exit
+if "%type%"=="3" goto bathome
+if "%type%"=="4" goto shutdown
+if "%type%"=="5" goto admin
+if "%type%"=="6" goto secret
+if "%type%"=="7" goto dwz
+if "%type%"=="8" goto fresh
+if "%type%"=="9" goto version
+if "%type%"=="10" goto changepassword
+if "%type%"=="11" goto clear
+if "%type%"=="12" goto stop
+if "%type%"=="13" goto sign
+if "%type%"=="14" goto system
+if "%type%"=="15" goto ip
+if "%type%"=="16" goto reload
+if "%type%"=="17" goto more
+if "%type%"=="18" goto guest
+
+:eof
+cls
+echo                  ÏµÍ³¼ì²âµ½Äú³¤Ê±¼äÎ´ÊäÈë,ÒÑÎªÄúÖ´ĞĞ×Ô¶¯¹Ø±Õ´°¿Ú£¡
+ping /n 3 127>nul
+for /l %%i in (5,-1,0) do (
+    echo                             ½«ÔÚ %%i ÃëÄÚ×Ô¶¯¹Ø±Õ´°¿Ú£¡
+    ping -n 2 127.0.0.1>nul
+    cls
+)
+exit
+
+:eclipse
+start C:\Users\Administrator\Desktop\eclipse\eclipse\eclipse.exe
+exit
+
+:secret
+cls
+call C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\¾øÃÜÎÄ¼ş.cmd
+exit
+
+:shutdown
+cls
+title ¹Ø»ú/ÖØÆô³ÌĞò
+set /p queding=ÇëÈ·¶¨¹Ø»ú»òÖØÆô(x-y),·µ»ØÉÏÒ»¼¶ÊäÈëf:
+choice /c xyf /n /m "ÇëÊäÈëx¹Ø»ú¡ª¡ªyÖØÆô¡ª¡ªf·µ»Ø"
+if "%errorlevel%"=="1" goto shutdowncomputer
+if "%errorlevel%"=="2" goto reloadcomputer
+if "%errorlevel%"=="3" goto back
+
+:back
+cls & goto menu
+
+:shutdowncomputer
+cls
+set /p guanji=ÇëÊäÈë¹Ø»úÊ±¼äµ¥Î»(Ãë):
+shutdown -s -t %guanji% -c ¹Ø»úÊ±¼ä:%guanji%Ãë
+exit
+:reloadcomputer
+cls
+shutdown -r
+exit
+
+:fresh
+taskkill /f /im explorer.exe /t
+exit
+
+:stop
+cls & set warn=%tmp%\warn.html
+title ÓÎÏ·Ç¿ÖÆÍ£Ö¹³ÌĞò
+set /p gk=ÇëÊäÈëÓÎÏ·½ø³ÌµÄÓ³ÏñÃû³Æ:
+set /p th=ÇëÊäÈëµ¹¼ÆÊ±µÄÊ±¼ä(Ãë):
+cls
+::´´½¨html
+>%tmp%\warn.html (
+     echo ^<p style="text-align:center;text-indent:2em;"^>
+	 echo ^<span style="font-size:32px;font-family:&quot;color:#E53333;"^>^<strong^>^<span style="color:#E53333;line-height:1;"^>Çë^</span^>^<span style="color:#E53333;line-height:1;"^>ÖÆ^</span^>^<span style="color:#E53333;line-height:1;"^>Ô¼×Ô¼º²»Òª¼ÌĞøÓÎÏ·£¡·ñÔò»á¶ÔÄúµÄÑÛ¾¦Ôì³ÉÓ°Ïì£¡^</span^>^</strong^>^</span^> 
+     echo ^</p^>
+     echo ^<p style="text-indent:2em;"^>
+	 echo ^<span style="font-size:9px;"^>^<span style="font-family:SimHei;"^>^</span^>^</span^> 
+     echo ^</p^>
+	 echo     ^<script language=javascript^>
+     echo function hero(^){
+     echo   var herowidth=400;
+     echo   var heroheight=200;
+     echo   window.resizeTo(herowidth,heroheight^)
+     echo }
+     echo hero(^);
+     echo     ^</script^>	
+     echo ^<p style="text-align:center;"^>
+	 echo ^<br /^>
+     echo ^</p^>
+     echo ^<p style="text-indent:2em;"^>
+	 echo ^<span style="font-size:9px;"^>^<span style="font-family:SimHei;"^>^</span^>^</span^> 
+     echo ^</p^>
+)
+::´´½¨Òş²Øvbs
+echo createobject ("wscript.shell").run "cmd /c %tmp%\warn.cmd"^,^0>%tmp%\warn.vbs
+::´´½¨µ¹¼ÆÊ±cmd
+>%tmp%\%warn.cmd (
+    echo for /l ^%%%%i in ^(!th!,-1,0^) do ^(ping /n 2 127^>nul^)
+	echo start mshta !warn!
+    echo taskkill /f /im !gk! /t
+    echo ping /n 1 127^>nul
+	echo del /f/q warn.html ^& del /f/q warn.vbs del /f/q warn.cmd
+    echo exit
+)
+::ÔËĞĞvbs
+start %tmp%\warn.vbs
+exit
+
+:clear
+cls
+@echo off
+color 3f&title Çå³ıÀ¬»ø
+echo ÕıÔÚ°²È«µØ×Ô¶¯Çå³ıÀ¬»øÎÄ¼ş¡­¡­
+del /f /q %systemdrive%\*.tmp>nul 2>nul
+del /f /q %systemdrive%\*._mp>nul 2>nul
+del /f /q %systemdrive%\*.log>nul 2>nul
+del /f /q %systemdrive%\*.gid>nul 2>nul
+del /f /q %systemdrive%\*.chk>nul 2>nul
+del /f /q %systemdrive%\*.old>nul 2>nul
+del /f /q %windir%\*.bak>nul 2>nul
+del /f /q %windir%\*.tmp>nul 2>nul
+del /f /q %windir%\prefetch\*.*>nul 2>nul
+del /f /s /q %systemdrive%\recycled\*.*
+del /f /q "%ALLUSERSPROFILE%\Documents\DrWatson\*.*">nul 2>nul
+del /f /q "%USERPROFILE%\Cookies\*.txt">nul 2>nul
+del /f /q /s "%TEMP%\*.*">nul 2>nul
+del /f /q /s "%Systemroot%\Prefetch\*.*">nul 2>nul
+del /f /q "%USERPROFILE%\Recent\*.*">nul 2>nul
+del /f /q "%USERPROFILE%\Application Data\Microsoft\Office\Recent\*.lnk">nul 2>nul
+del /f /q /s "%USERPROFILE%\Local Settings\Temp\*.*">nul 2>nul
+rd /s /q %windir%\temp & md %windir%\temp>nul 2>nul
+if not exist %SystemRoot%\Minidump\NUL del /f /q /s %SystemRoot%\Minidump\*.*>nul 2>nul
+del /f /s /q "%userprofile%\Local Settings\Temporary Internet Files\*.*">nul 2>nul
+cls
+for /l %%i in (5,-1,0) do (
+    echo Çå³ıÍê±Ï£¬½«ÔÚ %%i ÃëÄÚ×Ô¶¯¹Ø±Õ´°¿Ú£¡
+    ping -n 2 127.0.0.1>nul
+    cls
+)
+exit
+
+:admin
+start http://tplogin.cn
+exit
+
+:exit
+exit
+
+:bathome
+start http://bbs.bathome.net
+exit
+
+:sign
+start http://www.skinme.cc/
+exit
+
+:ip
+ipconfig/all>±¾»úipĞÅÏ¢.txt
+echo µÇÂ½ÕËºÅ:dg2608822@163.gd>>±¾»úipĞÅÏ¢.txt
+echo µÇÂ½¿ÚÁî:22608822>>±¾»úipĞÅÏ¢.txt
+echo Ö¤¼şºÅÂë:\u0034\u0034\u0031\u0034\u0032\u0035\u0031\u0039\u0037\u0030\u0031\u0030\u0031\u0033\u0030\u0030\u0039\u0058>>±¾»úipĞÅÏ¢.txt
+exit
+
+:system
+systeminfo>ÏµÍ³ĞÅÏ¢.txt
+exit
+
+:dwz
+start http://dwz.cn/
+exit
+
+:calculate
+cls
+set /p jisuan=ÇëÊäÈë¼ÆËã¹«Ê½:
+set /a jieguo=%jisuan%
+echo %jieguo%
+pause>nul
+goto :calculate
+
+:more
+@echo off
+color 0a
+title ¸ü¶àÖ¸Áî
+cls
+:menu2
+color 3f
+cls
+echo.
+echo.
+echo                                  °´ÈÎÒâ¼ü·µ»Ø
+echo                                ÖÆ×÷Õß:ÍüÈ´µÄĞıÂÉ
+echo.                        ¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x
+echo                       ¨Š                              ¨Š
+echo                       ¨Š ·µ»Ø×ÛºÏÖ¸Áî,ÇëÊäÈëfanhui    ¨Š
+echo                       ¨Š µ¼³ö±¾»úipĞÅÏ¢,ÇëÊäÈëip      ¨Š
+echo                       ¨Š µ¼³öÏµÍ³ĞÅÏ¢,ÇëÊäÈëxitong    ¨Š
+echo                       ¨Š µ¼³ö¸üĞÂÎÄ¼ş,ÇëÊäÈëdaochu    ¨Š
+echo                       ¨Š ÖØÆô±¾ÎÄ¼ş£¬ÇëÊäÈëreload     ¨Š
+echo                       ¨Š                              ¨Š
+echo                         ¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰
+echo                                  ×îºó¸üĞÂÊ±¼äÓÚ2019.2.8
+echo                                                  °æ±¾3.2
+pause>nul
+goto print
+
+:version
+start "" "C:\Users\Administrator\AppData\Roaming\.minecraft"
+exit
+
+:reload
+start "" %0
+exit
+
+
+
+:guest
+cls & echo È±ÉÙÃÜÂëÎÄ¼ş,ÇĞ»»Îª·Ã¿ÍµÇÂ½! & ping -n 2 127>nul & cls
+echo ´Ë³ÌĞòÎªÍüÈ´µÄĞıÂÉÉè¼ÆÓÃÓÚ¹ÜÀí×ÀÃæ
+echo ´ËÎÄ¼ş°üº¬ÓĞµçÄÔµÄ»ù±¾¹¦ÄÜ! & ping -n 3 127>nul & cls
+echo                                     ·Ã¿ÍÄ£Ê½
+echo                                ÖÆ×÷Õß:ÍüÈ´µÄĞıÂÉ
+echo.                        ¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x¨x
+echo                       ¨Š ¼ÆËã»ú                    1¨Š
+echo                       ¨Š ¹Ø±Õ´Ë´°¿Ú                2¨Š
+echo                       ¨Š ¼ÆËã»ú¹ÜÀí                3¨Š
+echo                       ¨Š ¹Ø»ú/ÖØÆôÊ±¼ä             4¨Š
+echo                       ¨Š Â·ÓÉÆ÷¹ÜÀí                5¨Š
+echo                       ¨Š ±¾µØ×é²ßÂÔ±à¼­Æ÷          6¨Š
+echo                       ¨Š °Ù¶ÈËõ¶ÌÍøÖ·              7¨Š
+echo                       ¨Š Ë¢ĞÂ×ÀÃæ                  8¨Š
+echo                       ¨Š ×¢²á±í±à¼­Æ÷              9¨Š
+echo                       ¨Š À¬»øÇåÀí                  a¨Š
+echo                       ¨Š µ¼³öÏµÍ³ĞÅÏ¢              b¨Š
+echo                       ¨Š µ¼³öipĞÅÏ¢                c¨Š
+echo                       ¨Š ÖØÆô±¾ÎÄ¼ş                d¨Š
+echo                         ¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰¨‰
+choice /c 123456789abcd /n /m ÇëÊäÈë¶ÔÓ¦µÄÊı×Ö»ò×ÖÄ¸:
+if "%errorlevel%"=="1" start "" "C:\Windows\System32\calc.exe"
+if "%errorlevel%"=="2" goto eof
+if "%errorlevel%"=="3" compmgmt.msc
+if "%errorlevel%"=="4" goto shutdown
+if "%errorlevel%"=="5" goto ipadmin
+if "%errorlevel%"=="6" gpedit.msc
+if "%errorlevel%"=="7" goto dwz
+if "%errorlevel%"=="8" goto fresh
+if "%errorlevel%"=="9" regedit
+if "%errorlevel%"=="10" goto clear
+if "%errorlevel%"=="11" goto system
+if "%errorlevel%"=="12" cls & ipconfig/all & ipconfig/all>ip.txt & pause>nul
+if "%errorlevel%"=="13" goto reload
+:ipadmin
+cls
+choice /c 12 /n /m ÇëÑ¡ÔñÄ£Ê½1,2[¸ß¼¶Ä£Ê½1(ËÙ¶È½ÏÂı,µ«½ÏÎª×¼È·)^|¼ìË÷Ä£Ê½2(ËÙ¶È¿ì,µ«ËÑË÷Ä£ºı)]
+if %errorlevel%==1 set ipmode=9
+if %errorlevel%==2 set ipmode=1
+cls & echo ÓÉÓÚ±¾ÈË²ÅÊèÑ§Ç³,´Ë¹ı³Ì¿ÉÄÜ»áÔËĞĞ»ºÂı£¡
+for /f "usebackq delims=+" %%i in (`ipconfig/all^|findstr "Ä¬ÈÏÍø¹Ø" 2^>nul`) do (
+   set checkip=%%i
+   set defaultip=!checkip:~-20! 
+   for /l %%j in (0,1,!ipmode!) do (
+        echo !defaultip!|findstr "%%j" >nul&& set ip=%%i
+))
+for /f "delims=: tokens=2" %%i in ("%ip%") do (
+ set ip=%%i
+) & set ip=!ip: =!
+start http://%ip% & cls & echo ³É¹¦´ò¿ª£¡ ||echo ´ò¿ªÊ§°Ü,Çë×ÔÑ°²éÕÒÂ·ÓÉÆ÷¹ÜÀí½çÃæµØÖ·£¡ 
+for /l %%i in (5,-1,0) do (
+    echo                             ½«ÔÚ %%i ÃëÄÚ×Ô¶¯¹Ø±Õ´°¿Ú£¡
+    ping -n 2 127.0.0.1>nul
+    cls
+)
+
+
+::±äÁ¿
+:values
+set default=admin
+set password=
+set save=
+set typetimes=0
+set times=3
+for /l %%i in (0,1,18) do (
+ set arrow%%i=   ¨Š
+)
+for /f %%i in (C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼ş\times.ini) do set passwordtimes=%%i
