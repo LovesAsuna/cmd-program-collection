@@ -1,0 +1,110 @@
+@echo off & setlocal enabledelayedexpansion & set pgd=pluginupdate & title pluginupdate & color 0a
+::plugin download folder
+goto testfor
+if not defined folder goto folder
+
+:folder
+echo 第一次使用..请先指定插件下载文件夹
+>>pluginupdate\settings.ini (
+  echo [pluginupdate]
+  echo folder=
+  echo server1=
+  echo server2=
+  echo server3=
+  echo server4=
+  echo plugin1=
+  echo plugin2=
+  echo plugin3=
+  echo plugin4=
+  echo plugin5=
+)  
+goto testfor
+
+:testfor
+set times=1
+for /f "delims== tokens=2" %%i in (pluginupdate\settings.ini) do (
+  if !times!==1 set folder=%%i
+  if !times!==2 set server1=%%i
+  if !times!==3 set server2=%%i
+  if !times!==4 set server3=%%i
+  if !times!==5 set server4=%%i
+  set /a times=!times!+1
+)
+set times=1 & set @server1=Survival & set @server2=Lobby & set @server3=Askblock & set @server4=Anticheat
+for /f "delims== tokens=2" %%i in (pluginupdate\settings.ini) do (
+  if !times!==6 set plugin1=%%i
+  if !times!==7 set plugin2=%%i
+  if !times!==8 set plugin3=%%i
+  if !times!==9 set plugin4=%%i
+  if !times!==10 set plugin5=%%i
+  set /a times=!times!+1
+)
+goto run
+
+:run
+for /l %%i in (1,1,4) do (
+echo !@server%%i! logs
+echo ===================================
+set times=1
+for /f "usebackq tokens=4 delims= " %%a in (`dir !server%%i! ^|findstr "!plugin1!" 2^>nul`) do (
+  if !times!==2 set plugin1ori=%%a
+  set /a times=!times!+1
+)
+if not defined plugin1ori set plugin1ori=none
+set error=yes
+for /f "usebackq tokens=4 delims= " %%b in (`dir !folder! ^|findstr "!plugin1!" 2^>nul`) do (
+  set plugin1new=%%b
+  set error=none
+)
+if "!error!"=="none" del !server%%i!\!plugin1ori! >nul
+echo f|xcopy !folder!\!plugin1new! !server%%i!\!plugin1new! >nul
+echo 已成功将!plugin1ori! 替换为 !plugin1new!
+set times=1 
+for /f "usebackq tokens=4 delims= " %%c in (`dir !server%%i! ^|findstr "!plugin2!" 2^>nul`) do (
+  if !times!==2 set plugin2ori=%%c
+  set /a times=!times!+1
+)
+if not defined plugin2ori set plugin2ori=none
+set error=yes
+for /f "usebackq tokens=4 delims= " %%d in (`dir !folder! ^|findstr "!plugin2!" 2^>nul`) do (
+  set plugin2new=%%d
+  set error=none
+)
+if "!error!"=="yes" set plugin2new=!plugin2ori!
+if "!error!"=="none" del !server%%i!\!plugin2ori! >nul
+echo f|xcopy !folder!\!plugin2new! !server%%i!\!plugin2new! >nul
+echo 已成功将!plugin2ori! 替换为 !plugin2new!
+set times=1
+for /f "usebackq tokens=4 delims= " %%e in (`dir !server%%i! ^|findstr "!plugin3!" 2^>nul`) do (
+  if !times!==2 set plugin3ori=%%e
+  set /a times=!times!+1
+)
+if not defined plugin3ori set plugin3ori=none
+set error=yes
+for /f "usebackq tokens=4 delims= " %%f in (`dir !folder! ^|findstr "!plugin3!" 2^>nul`) do (
+  set plugin3new=%%f
+  set error=none
+)
+if "!error!"=="yes" set plugin3new=!plugin3ori!
+if "!error!"=="none" del !server%%i!\!plugin3ori! >nul
+echo f|xcopy !folder!\!plugin3new! !server%%i!\!plugin3new! >nul
+echo 已成功将!plugin3ori! 替换为 !plugin3new!
+set times=1
+for /f "usebackq tokens=4 delims= " %%g in (`dir !server%%i! ^|findstr "!plugin4!" 2^>nul`) do (
+  if !times!==2 set plugin4ori=%%g
+  set /a times=!times!+1
+)
+if not defined plugin4ori set plugin4ori=none
+set error=yes
+for /f "usebackq tokens=4 delims= " %%h in (`dir !folder! ^|findstr "!plugin4!" 2^>nul`) do (
+  set plugin4new=%%h
+  set error=none
+)
+if "!error!"=="yes" set plugin4new=!plugin4ori! 
+if "!error!"=="none" del !server%%i!\!plugin4ori! >nul
+echo f|xcopy !folder!\!plugin4new! !server%%i!\!plugin4new! >nul
+echo 已成功将!plugin4ori! 替换为 !plugin4new!
+echo ===================================
+)
+echo All tasks finshed!
+pause>nul
