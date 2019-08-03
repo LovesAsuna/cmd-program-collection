@@ -1,5 +1,3 @@
-ЪЧa
-cls
 @echo off & setlocal enabledelayedexpansion
 color 0a & del /q ╤ах║╫А╧Ш.txt>nul & cls & ping -n 1 127>nul
 title ╤ах║нд╪ЧBYмЭх╢╣дпЩби

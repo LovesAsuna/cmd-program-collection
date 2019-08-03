@@ -1,5 +1,3 @@
-ÿşa
-cls
 @echo off & setlocal enabledelayedexpansion & title ¸ü¸ÄÃÜÂë
 color 0a & set default=admin 
 set times=3

