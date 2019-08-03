@@ -1,3 +1,5 @@
+ÿşa
+cls
 @echo off & setlocal enabledelayedexpansion 
 title ÃÜÂë×ªĞÇºÅ
 ::ÒıÈë±äÁ¿¿â

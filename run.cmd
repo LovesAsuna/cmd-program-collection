@@ -1,3 +1,5 @@
+ÿşa
+cls
 @echo off & setlocal enabledelayedexpansion 
 set reload=0 & set times=1
 rem Ê¶±ğÊÇ·ñÎªBungeecordºËĞÄ

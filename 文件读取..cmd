@@ -1,0 +1,98 @@
+ÿşa
+cls
+@echo off & setlocal enabledelayedexpansion
+color 0a & del /q ¶ÁÈ¡½á¹û.txt>nul & cls & ping -n 1 127>nul
+title ¶ÁÈ¡ÎÄ¼şBYÍüÈ´µÄĞıÂÉ
+:main
+cls
+choice /c jdq /n /m "ÇëÑ¡ÔñÄ£Ê½:½âÃÜÄ£Ê½j  ¶ÁÈ¡Ä£Ê½d"
+if "%errorlevel%"=="1" goto jiemi
+if "%errorlevel%"=="2" goto duqu
+if "%errorlevel%"=="3" goto debug
+rem ½âÃÜÄ£Ê½
+:jiemi
+choice /n /m È«ÆÁÄ£Ê½?(Y/N)
+if /i "%errorlevel%"=="1" goto mode
+if /i "%errorlevel%"=="2" goto jiemi2
+:mode
+mode con lines=500 cols=500
+goto jiemi2
+:jiemi2
+color 3f
+cls & title ¶ÁÈ¡ÎÄ¼ş(½âÃÜÄ£Ê½)BYÍüÈ´µÄĞıÂÉ
+echo ÍÏÈëÒª½âÃÜµÄÅú´¦Àí:
+set /p a=
+set new=%a:"=%
+set prefix=%new:~-4%
+if /i "%prefix%" equ ".cmd" goto repare
+if /i "%prefix%" equ ".bat" goto repare
+cls
+echo                          ´ËÎÄ¼şÎª·ÇÅú´¦Àí£¬ÇëÖØĞÂÑ¡ÔñÎÄ¼ş
+ping/n 2 127>nul
+goto jiemi2
+:repare
+for /f "usebackq delims=: " %%i in (`findstr/n . "%new%"`) do set line=%%i
+for /l %%i in (0,1,%line%) do (
+echo                              ÕıÔÚµ¼Èë: %%i/%line%
+ping /n 1 127>nul
+cls
+)
+echo                                   µ¼Èë³É¹¦
+ping /n 2 127>nul & cls
+for /f "usebackq delims=" %%i in (%a%) do (
+echo %%i
+echo %%i>>¶ÁÈ¡½á¹û.txt
+)
+pause>nul
+exit
+rem ¶ÁÈ¡Ä£Ê½
+:duqu
+color 3f
+cls & title ¶ÁÈ¡ÎÄ¼ş(¶ÁÈ¡Ä£Ê½)BYÍüÈ´µÄĞıÂÉ
+echo ÌáÊ¾:
+echo ÎÄ¼şÓÅÏÈ×Ô¶¯¶ÁÈ¡txtÎªºó×ºµÄÎÄ¼ş£¡
+ping -n 2 127>nul & cls
+dir /b|findstr "txt">ÎÄ±¾.x || goto error
+for /f "delims=" %%i in (ÎÄ±¾.x) do (
+  set f=%%i
+  )
+del ÎÄ±¾.x
+echo µ¼Èë³É¹¦ & ping -n 2 127>nul & cls
+for /f "usebackq delims=" %%i in (%f%) do (
+echo %%i
+echo %%i>>¶ÁÈ¡½á¹û.txt
+)
+start ¶ÁÈ¡½á¹û.txt
+exit
+:error
+del ÎÄ±¾.x
+cls
+echo ÎÄ±¾²éÕÒÊ§°Ü & ping -n 2 127>nul & cls
+echo ÊÖ¶¯ÊäÈë¶ÁÈ¡ÎÄ¼ş(¿É½«ÎÄ¼şÍÏÈë¿òÄÚ)£º
+set /p h=
+echo µ¼Èë³É¹¦ & ping -n 2 127>nul & cls
+for /f "usebackq delims=" %%i in (%h%) do (
+echo %%i
+echo %%i>>¶ÁÈ¡½á¹û.txt
+)
+if not exist ¶ÁÈ¡½á¹û.txt more %h%>>¶ÁÈ¡½á¹û.txt && more %h%
+pause>nul
+goto :eof
+
+
+:debug
+rem debugÄ£Ê½
+title ÎÄ¼ş¶ÁÈ¡debugÄ£Ê½
+cls & for /f "delims=*" %%i in ("WindowsÎÄ¼ş¶ÁÈ¡debugÄ£Ê½") do (
+ set video=%%i
+ for /l %%j in (0,1,19) do set /p "=!video:~%%j,1!"<nul & ping /n 1 127>nul
+) & ping /n 1 127>nul & cls
+choice /c yn /n /m È«ÆÁÄ£Ê½?(Y/N)
+if %errorlevel%==1 mode con lines=500 cols=500
+if %errorlevel%==2 goto run
+:run
+set /p file=ÍÏÈëÎÄ¼ş:
+cls & for /f "delims=" %%i in (%file%) do (
+  echo %%i
+)
+pause>nul

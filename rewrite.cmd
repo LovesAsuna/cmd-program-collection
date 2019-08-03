@@ -1,3 +1,5 @@
+ÿþa
+cls
 @echo off & setlocal enabledelayedexpansion
 title Bytetestfor @All right reserverd by melody
 rem ¼ì²âÊÇ·ñÓÐcmd.exe

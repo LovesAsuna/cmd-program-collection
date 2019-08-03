@@ -1,7 +1,5 @@
 ÿşa
 cls
-ÿşa
-cls
 @echo off
 color 0a
 title ¾øÃÜÎÄ¼şByÍüÈ´µÄĞıÂÉ
