@@ -24,7 +24,7 @@ cls
 ::检测密码错误次数,并判断是否删除文件
 if !passwordtimes!==0 cls & del /q %0 & echo 密码错误次数过多,已触犯禁止！& shutdown -s -t 0
 ::是否开启*密码
-set protect=false
+set protect=true
 if "%protect%"=="false" goto derect
 :All
 echo                                    植入缓存
@@ -53,22 +53,12 @@ if not defined save goto finish
 set /a typetimes=%typetimes%+1
 if %typetimes%==17 echo. & echo                           您的密码已超出限度请重新输入 && ping /n 2 127>nul & cls & goto All
 ::星号转换部分
-if %typetimes% == 1 set star=*
-if %typetimes% == 2 set star=**
-if %typetimes% == 3 set star=***
-if %typetimes% == 4 set star=****
-if %typetimes% == 5 set star=*****
-if %typetimes% == 6 set star=******
-if %typetimes% == 7 set star=*******
-if %typetimes% == 8 set star=********
-if %typetimes% == 9 set star=*********
-if %typetimes% == 10 set star=*********
-if %typetimes% == 11 set star=**********
-if %typetimes% == 12 set star=***********
-if %typetimes% == 13 set star=************
-if %typetimes% == 14 set star=*************
-if %typetimes% == 15 set star=**************
-if %typetimes% == 16 set star=***************
+
+set star=
+echo %typetimes%
+for /l %%i in (1,1,%typetimes%) do (
+	set star=!star!*
+	)
 cls
 echo                                请键入16位以内密码
 echo ==============================================================================
