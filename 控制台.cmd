@@ -1,5 +1,3 @@
-ÿþa
-cls
 @echo off & setlocal enabledelayedexpansion & color 3f & title ¿ØÖÆÌ¨ & set file=%0 & set ini=!file:¿ØÖÆÌ¨.cmd=¾øÃÜÎÄ¼þ\times.ini!
 if not exist C:\Users\Administrator\Desktop\¾øÃÜÎÄ¼þ\key.txt goto guest
 if not exist !ini! echo ^3>!ini! & attrib +s +h !ini!
