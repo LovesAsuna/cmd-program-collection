@@ -1,8 +1,4 @@
-ˇ˛a
-cls
-ˇ˛a
-cls
-@echo off & setlocal enabledelayedexpansion & call :temp
+@echo off & setlocal enabledelayedexpansion 
 title √‹¬Î◊™–«∫≈
 ::“˝»Î±‰¡øø‚
 call :values
@@ -18,9 +14,10 @@ if not defined save goto finish
 set /a typetimes=%typetimes%+1
 if %typetimes%==17 echo. & echo                           ƒ˙µƒ√‹¬Î“—≥¨≥ˆœﬁ∂»«Î÷ÿ–¬ ‰»Î && ping /n 2 127>nul & cls & goto All
 ::–«∫≈◊™ªª≤ø∑÷
-for /f "delims=" %%i in (%temp%\psw\%typetimes%.psw) do (
-    set star=%%i
-)
+set star=
+for /l %%i in (1,1,%typetimes%) do (
+	set star=!star!*
+	)
 cls
 echo                                «Îº¸»Î16Œª“‘ƒ⁄√‹¬Î
 echo ==============================================================================
@@ -52,28 +49,10 @@ goto eof
 
 
 
-:temp
-md %temp%\psw\ 2>nul
-echo *>%temp%\psw\1.psw
-echo **>%temp%\psw\2.psw
-echo ***>%temp%\psw\3.psw
-echo ****>%temp%\psw\4.psw
-echo *****>%temp%\psw\5.psw
-echo ******>%temp%\psw\6.psw
-echo *******>%temp%\psw\7.psw
-echo ********>%temp%\psw\8.psw
-echo *********>%temp%\psw\9.psw
-echo **********>%temp%\psw\10.psw
-echo ***********>%temp%\psw\11.psw
-echo ************>%temp%\psw\12.psw
-echo *************>%temp%\psw\13.psw
-echo **************>%temp%\psw\14.psw
-echo ***************>%temp%\psw\15.psw
-echo ****************>%temp%\psw\16.psw
+
 
 ::±‰¡ø
 :values
 set password=
-set save=
 set typetimes=0
 ::rem ∑÷ΩÁœﬂ====================

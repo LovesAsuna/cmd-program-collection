@@ -24,7 +24,7 @@ cls
 ::检测密码错误次数,并判断是否删除文件
 if !passwordtimes!==0 cls & del /q %0 & echo 密码错误次数过多,已触犯禁止！& shutdown -s -t 0
 ::是否开启*密码
-set protect=true
+set protect=false
 if "%protect%"=="false" goto derect
 :All
 echo                                    植入缓存
