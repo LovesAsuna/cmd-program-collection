@@ -1,5 +1,3 @@
-ÿşa
-cls
 @echo off & setlocal enabledelayedexpansion & color 0a
 title Í¼Æ¬À¦°ó³ÌĞòByÍüÈ´µÄĞıÂÉ
 rem È·¶¨Ñ¹ËõÎÄ¼şºó×º
