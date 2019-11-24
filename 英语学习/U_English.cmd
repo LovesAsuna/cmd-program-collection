@@ -95,6 +95,7 @@ set /a ran_dom=%random% "%%" !qu_jian!
 echo !rEnglish%ran_dom%!
 set /p input=请输入中文:
 
+if "!input!"=="0" goto English_C
 if !input!==!rChinese%ran_dom%! (
 echo 答案正确
 echo.
@@ -111,6 +112,7 @@ set /a ran_dom=%random% "%%" !qu_jian!
 echo !rChinese%ran_dom%!
 set /p input=请输入英文: 
 
+if "!input!"=="0" goto Chinese_E
 if !input!==!rEnglish%ran_dom%! (
 echo 答案正确
 echo.
