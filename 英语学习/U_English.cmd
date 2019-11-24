@@ -24,6 +24,7 @@ if !unit!==2 (
 set /p iE=请输入小节数：
 if !iE!==1 (
 set /p part=此小节分为两部分，请输入部分数：
+title 英语复习: 第!unit!单元!iE!小节第!part!部分
 ::Unit2_iexpore1_part1
 if !part!==1 (
 set /a skip_=47
@@ -39,6 +40,7 @@ set /a qu_jian=22
 
 if !iE!==2 (
 set /p part=此小节分为两部分，请输入部分数：
+title 英语复习: 第!unit!单元!iE!小节第!part!部分
 ::Unit2_iexpore2_part1
 if !part!==1 (
 set /a skip_=105
@@ -105,9 +107,10 @@ goto Chinese_E_oder
 
 ::主体
 :English_C_random
+cls & set input=
 set /a ran_dom=%random% "%%" !qu_jian!
 echo !rEnglish%ran_dom%!
-set /p input=Please Input Chinese:
+set /p input=请输入中文: 
 
 if "!input"!=="0" goto English_C_random
 if !input!==!rChinese%ran_dom%! (
@@ -122,6 +125,7 @@ goto English_C_random
 
 
 :English_C_oder
+cls & set input=
 set /a qu_jian1=!qu_jian!-1
 if !oder_control!==!qu_jian1! (
 set /a oder_control=-1
