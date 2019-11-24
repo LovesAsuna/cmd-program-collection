@@ -90,7 +90,7 @@ goto Chinese_E
 
 ::主体
 :English_C
-cls
+cls & set input=
 set /a ran_dom=%random% "%%" !qu_jian!
 echo !rEnglish%ran_dom%!
 set /p input=请输入中文:
@@ -107,7 +107,7 @@ echo.)
 goto English_C
 
 :Chinese_E
-cls
+cls & set input=
 set /a ran_dom=%random% "%%" !qu_jian!
 echo !rChinese%ran_dom%!
 set /p input=请输入英文: 
