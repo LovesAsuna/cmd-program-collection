@@ -1,10 +1,10 @@
-@ECHO off & title è‹±è¯­å¤ä¹ 
+@ECHO off & title Ó¢Óï¸´Ï°
 SETLOCAL ENABLEDELAYEDEXPANSION 
 set /a oder_control=-1
-set /p unit=è¯·è¾“å…¥å•å…ƒæ•°ï¼š
+set /p unit=ÇëÊäÈëµ¥ÔªÊý£º
 
 if !unit!==1 (
-set /p iE=è¯·è¾“å…¥å°èŠ‚æ•°ï¼š
+set /p iE=ÇëÊäÈëÐ¡½ÚÊý£º
 ::Unit1_iexpore1
 if !iE!==1 (
 set /a skip_=0
@@ -21,9 +21,9 @@ set /a qu_jian=13
  
 if !unit!==2 (
 
-set /p iE=è¯·è¾“å…¥å°èŠ‚æ•°ï¼š
+set /p iE=ÇëÊäÈëÐ¡½ÚÊý£º
 if !iE!==1 (
-set /p part=æ­¤å°èŠ‚åˆ†ä¸ºä¸¤éƒ¨åˆ†ï¼Œè¯·è¾“å…¥éƒ¨åˆ†æ•°ï¼š
+set /p part=´ËÐ¡½Ú·ÖÎªÁ½²¿·Ö£¬ÇëÊäÈë²¿·ÖÊý£º
 ::Unit2_iexpore1_part1
 if !part!==1 (
 set /a skip_=47
@@ -38,7 +38,7 @@ set /a qu_jian=22
 
 
 if !iE!==2 (
-set /p part=æ­¤å°èŠ‚åˆ†ä¸ºä¸¤éƒ¨åˆ†ï¼Œè¯·è¾“å…¥éƒ¨åˆ†æ•°ï¼š
+set /p part=´ËÐ¡½Ú·ÖÎªÁ½²¿·Ö£¬ÇëÊäÈë²¿·ÖÊý£º
 ::Unit2_iexpore2_part1
 if !part!==1 (
 set /a skip_=105
@@ -54,7 +54,7 @@ set /a qu_jian=24
 
 
 
-::å­˜å…¥è‹±æ–‡æ•°æ®
+::´æÈëÓ¢ÎÄÊý¾Ý
 if !skip_!==0 (
 set /a h=-1
 FOR /F "tokens=1" %%i IN (UniversityEnglish.txt) DO (
@@ -68,7 +68,7 @@ SET /A h+=1 & SET rEnglish!h!=%%i
 )
 
 
-::å­˜å…¥ä¸­æ–‡æ•°æ®
+::´æÈëÖÐÎÄÊý¾Ý
 if !skip_!==0 (
 set /a j=-1
 FOR /F "tokens=2" %%i IN (UniversityEnglish.txt) DO (
@@ -81,8 +81,8 @@ SET /A j+=1 & SET rChinese!j!=%%i
 ) 
 )
 
-set /p type_translate="è‹±æ–‡-->ä¸­æ–‡ï¼š1ï¼Œä¸­æ–‡-->è‹±æ–‡ï¼š2ï¼Œè¯·è¾“å…¥:"
-set /p oder_or_random="éšæœºå‡ºçŽ°å•è¯ï¼š1ï¼Œä¾æ¬¡å‡ºçŽ°å•è¯ï¼š2ï¼Œè¯·è¾“å…¥ï¼š"
+set /p type_translate="Ó¢ÎÄ-->ÖÐÎÄ£º1£¬ÖÐÎÄ-->Ó¢ÎÄ£º2£¬ÇëÊäÈë:"
+set /p oder_or_random="Ëæ»ú³öÏÖµ¥´Ê£º1£¬ÒÀ´Î³öÏÖµ¥´Ê£º2£¬ÇëÊäÈë£º"
 if !type_translate!==1 (
 if !oder_or_random!==1 (
 goto English_C_random
@@ -103,7 +103,7 @@ goto Chinese_E_oder
 ) 
 )
 
-::ä¸»ä½“
+::Ö÷Ìå
 :English_C_random
 set /a ran_dom=%random% "%%" !qu_jian!
 echo !rEnglish%ran_dom%!
@@ -111,11 +111,11 @@ set /p input=Please Input Chinese:
 
 if "!input"!=="0" goto English_C_random
 if !input!==!rChinese%ran_dom%! (
-echo ç­”æ¡ˆæ­£ç¡®
+echo ´ð°¸ÕýÈ·
 echo.
 ping /n 2 127>nul
 ) else (
-echo æ­£ç¡®ç­”æ¡ˆä¸º: !rChinese%ran_dom%!
+echo ÕýÈ·´ð°¸Îª: !rChinese%ran_dom%!
 ping /n 4 127>nul
 echo.)
 goto English_C_random
@@ -129,14 +129,14 @@ set /a oder_control=-1
 set /a oder_control+=1 
 echo !rEnglish%oder_control%!
 
-set /p input=è¯·è¾“å…¥ä¸­æ–‡: 
+set /p input=ÇëÊäÈëÖÐÎÄ: 
 if "!input!"=="0" goto English_C_oder
 if !input!==!rChinese%oder_control%! (
-echo ç­”æ¡ˆæ­£ç¡®
+echo ´ð°¸ÕýÈ·
 echo.
 ping /n 2 127>nul
 ) else (
-echo æ­£ç¡®ç­”æ¡ˆä¸º: !rChinese%oder_control%!
+echo ÕýÈ·´ð°¸Îª: !rChinese%oder_control%!
 ping /n 4 127>nul
 echo.)
 goto English_C_oder
@@ -146,15 +146,15 @@ goto English_C_oder
 cls & set input=
 set /a ran_dom=%random% "%%" !qu_jian!
 echo !rChinese%ran_dom%!
-set /p input=è¯·è¾“å…¥è‹±æ–‡: 
+set /p input=ÇëÊäÈëÓ¢ÎÄ: 
 
 if "!input!"=="0" goto Chinese_E_random
 if !input!==!rEnglish%ran_dom%! (
-echo ç­”æ¡ˆæ­£ç¡®
+echo ´ð°¸ÕýÈ·
 echo.
 ping /n 2 127>nul
 ) else (
-echo æ­£ç¡®ç­”æ¡ˆä¸º: !rEnglish%ran_dom%!
+echo ÕýÈ·´ð°¸Îª: !rEnglish%ran_dom%!
 ping /n 4 127>nul
 echo.)
 goto Chinese_E_random
@@ -168,15 +168,15 @@ set /a oder_control=-1
 )
 set /a oder_control+=1 
 echo !rChinese%oder_control%!
-set /p input=è¯·è¾“å…¥è‹±æ–‡: 
+set /p input=ÇëÊäÈëÓ¢ÎÄ: 
 
 if "!input!"=="0" goto Chinese_E_oder
 if !input!==!rEnglish%oder_control%! (
-echo ç­”æ¡ˆæ­£ç¡®
+echo ´ð°¸ÕýÈ·
 echo.
 ping /n 2 127>nul
 ) else (
-echo æ­£ç¡®ç­”æ¡ˆä¸º: !rEnglish%oder_control%!
+echo ÕýÈ·´ð°¸Îª: !rEnglish%oder_control%!
 ping /n 4 127>nul
 echo.)
 goto Chinese_E_oder
